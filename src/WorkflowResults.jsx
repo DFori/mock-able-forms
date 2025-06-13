@@ -547,7 +547,7 @@ const WorkflowResults = () => {
         {/* Error Alert */}
         {showAlert && (
           <Alert
-            message="Could not load adjustment data. Please try to reduce the list of selection."
+            message="Custom alert."
             type="error"
             icon={<ExclamationCircleOutlined />}
             closable
