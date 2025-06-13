@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {
   Table,
   Button,
@@ -20,7 +20,7 @@ import {
   LeftOutlined,
 } from "@ant-design/icons";
 
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 
 const AdminInterface = () => {
   const [activeTab, setActiveTab] = useState("groups");
@@ -334,11 +334,11 @@ const AdminInterface = () => {
   );
 
   return (
-    <Layout className="min-h-screen">
+    <Layout className="min-h-screen w-screen h-screen flex flex-col" style={{ margin: 0, padding: 0 }}>
       {/* Header */}
       <Header
-        className="px-4 flex items-center justify-between"
-        style={{ backgroundColor: "#5f9ea0", height: "50px" }}
+        className="px-4 flex items-center justify-between w-full"
+        style={{ backgroundColor: "#5f9ea0", height: "50px", margin: 0, padding: "0 16px" }}
       >
         <div className="flex items-center space-x-6">
           <div className="text-white font-bold text-lg">JE</div>
@@ -353,7 +353,11 @@ const AdminInterface = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <Link to="/" className="mr-4 text-white hover:text-gray-200" style={{ color: 'white' }}>
+          <Link
+            to="/"
+            className="mr-4 text-white hover:text-gray-200"
+            style={{ color: "white" }}
+          >
             <LeftOutlined /> Back to Home
           </Link>
           <SettingOutlined className="text-white text-lg cursor-pointer hover:text-gray-200" />
@@ -368,7 +372,7 @@ const AdminInterface = () => {
       </Header>
 
       {/* Navigation Tabs */}
-      <div className="px-4" style={{ backgroundColor: "#5f9ea0" }}>
+      <div className="px-4 w-full" style={{ backgroundColor: "#5f9ea0", margin: 0 }}>
         <div className="flex space-x-8">
           <div
             className={`text-white py-3 border-b-2 cursor-pointer text-sm ${
@@ -394,9 +398,9 @@ const AdminInterface = () => {
       </div>
 
       {/* Main Content */}
-      <Content className="bg-white flex-1">
+      <Content className="bg-white flex-1 flex flex-col w-full" style={{ margin: 0, padding: 0 }}>
         {activeTab === "groups" ? (
-          <div className="p-6 mb-32">
+          <div className="p-6 w-full">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-semibold text-gray-800">Groups</h2>
               <Button
@@ -409,14 +413,14 @@ const AdminInterface = () => {
               </Button>
             </div>
 
-            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden w-full">
               <Table
                 columns={groupsColumns}
                 dataSource={groupsData}
                 pagination={false}
                 size="small"
                 scroll={{ x: 1400 }}
-                className="groups-table"
+                className="groups-table w-full"
                 rowClassName="hover:bg-gray-50"
               />
 
@@ -437,16 +441,16 @@ const AdminInterface = () => {
             </div>
           </div>
         ) : (
-          <div className="p-6 mb-10">
+          <div className="p-6 mb-10 w-full">
             <h2 className="text-xl font-semibold text-gray-800 mb-6">Users</h2>
 
-            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <div className="bg-white border border-gray-200 rounded-lg overflow-hidden w-full">
               <Table
                 columns={usersColumns}
                 dataSource={usersData}
                 pagination={false}
                 size="small"
-                className="users-table"
+                className="users-table w-full"
                 rowClassName="hover:bg-gray-50"
               />
 
@@ -470,13 +474,57 @@ const AdminInterface = () => {
       </Content>
 
       {/* Footer */}
-      <div className="bg-white border-t border-gray-200 px-6 py-3">
+      <Footer className="bg-white border-t border-gray-200 px-6 py-3 w-full" style={{ margin: 0 }}>
         <span className="text-xs text-gray-500">
-          © 2025 Able Forma Project. All rights reserved. 3
+          © 2025 Able Forma Project. All rights reserved.
         </span>
-      </div>
+      </Footer>
 
-      <style jsx>{`
+      <style jsx global>{`
+        * {
+          box-sizing: border-box;
+        }
+        
+        html, body {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+          overflow-x: hidden;
+        }
+
+        #root {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        .ant-layout {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        .ant-layout-header {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+        }
+
+        .ant-layout-content {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+        }
+
+        .ant-layout-footer {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+        }
+
         .groups-table .ant-table-thead > tr > th {
           background-color: #f8f9fa;
           border-bottom: 1px solid #dee2e6;
@@ -523,6 +571,14 @@ const AdminInterface = () => {
         .ant-pagination-simple .ant-pagination-simple-pager input {
           height: 24px;
           text-align: center;
+        }
+
+        .ant-table-wrapper {
+          width: 100% !important;
+        }
+
+        .ant-table {
+          width: 100% !important;
         }
       `}</style>
     </Layout>

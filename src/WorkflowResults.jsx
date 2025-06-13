@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import {
   Table,
   Button,
@@ -28,7 +28,7 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 const { Option } = Select;
 
 const WorkflowResults = () => {
@@ -171,12 +171,22 @@ const WorkflowResults = () => {
   };
 
   return (
-    <Layout className="min-h-screen">
+    <Layout
+      className="min-h-screen w-screen h-screen flex flex-col"
+      style={{ margin: 0, padding: 0 }}
+    >
       {/* Header */}
-      <Header className="bg-red-600 px-4 flex items-center justify-between" style={{ backgroundColor: '#b91c1c' }}>
+      <Header
+        className="flex items-center justify-between px-6 bg-red-600 shadow-sm w-full"
+        style={{ backgroundColor: "#b91c1c" }}
+      >
         <div className="flex items-center space-x-6">
           <div className="text-white font-bold text-lg">JE</div>
-          <Link to="/" className="mr-4 text-white hover:text-gray-200" style={{ color: 'white' }}>
+          <Link
+            to="/"
+            className="mr-4 text-white hover:text-gray-200"
+            style={{ color: "white" }}
+          >
             <LeftOutlined /> Back to Home
           </Link>
           <Dropdown
@@ -229,7 +239,10 @@ const WorkflowResults = () => {
       </div>
 
       {/* Main Content */}
-      <Content className="p-6 bg-gray-50 flex-1">
+      <Content
+        className="flex-grow p-8 bg-gray-50 w-full"
+        style={{ margin: 0 }}
+      >
         {activeTab === "adjustments" ? (
           <div className="bg-white rounded-lg shadow-sm h-full">
             {/* Adjustments Header */}
@@ -546,13 +559,57 @@ const WorkflowResults = () => {
       </Content>
 
       {/* Footer */}
-      <div className="bg-white border-t border-gray-200 px-6 py-3">
+      <Footer className="text-center bg-white w-full" style={{ margin: 0 }}>
         <span className="text-xs text-gray-500">
           © 2025 Able Forma Project. All rights reserved. 3
         </span>
-      </div>
+      </Footer>
 
       <style jsx>{`
+        * {
+          box-sizing: border-box;
+        }
+
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          width: 100%;
+          height: 100%;
+          overflow-x: hidden;
+        }
+
+        #root {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        .ant-layout {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+
+        .ant-layout-header {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+        }
+
+        .ant-layout-content {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+        }
+
+        .ant-layout-footer {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 !important;
+        }
         .workflow-table .ant-table-thead > tr > th {
           background-color: #f8f9fa;
           border-bottom: 1px solid #dee2e6;
